@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blur Food</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Blur hero background */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(255, 154, 77, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(200, 80, 192, 0.10) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 80%, rgba(54, 210, 255, 0.08) 0%, transparent 50%);
+      animation: drift 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(3%, -3%) rotate(120deg); }
+      66% { transform: translate(-2%, 2%) rotate(240deg); }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ff9a4d, #c850c0, #36d2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      filter: blur(0.6px);
+      transition: filter 0.3s;
+    }
+    h1:hover { filter: blur(1.5px); }
+
+    .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: #aaa;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .desc {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: #777;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ff9a4d, #c850c0);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(200, 80, 192, 0.3);
+    }
+    .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(200, 80, 192, 0.5);
+    }
+
+    /* Cards section */
+    .cards {
+      width: 100%;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+    .card p { font-size: 0.9rem; color: #888; line-height: 1.6; }
+
+    footer {
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      color: #555;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Blur Food</h1>
+      <p class="tagline">Where every bite is a beautiful blur.</p>
+      <p class="desc">
+        Blur Food reimagines how we experience food — blending bold flavors,
+        minimalist aesthetics, and a touch of digital surrealism. Not just a meal,
+        but a moment suspended in soft focus.
+      </p>
+      <a href="#" class="cta">Explore the Menu</a>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <div class="card-icon">🍜</div>
+      <h3>Umami Ramen</h3>
+      <p>Slow-broth miso with hand-pulled noodles, soft egg, and a drizzle of truffle oil.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥗</div>
+      <h3>Garden Blur</h3>
+      <p>Heirloom vegetables, edible flowers, and yuzu vinaigrette — a visual and culinary feast.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍰</div>
+      <h3>Matcha Cloud</h3>
+      <p>Ceremonial matcha mousse on a crisp almond base, dusted with gold leaf.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Blur Food &mdash; crafted with intention
+  </footer>
+</body>
+</html>
